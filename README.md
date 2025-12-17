@@ -1,6 +1,6 @@
 ## Personal_Page — Static Website
 
-This repository contains a small, clean static personal website built with **plain HTML and CSS only** — no JavaScript.
+This repository contains a small, clean static personal website built with HTML, CSS and JavaScript.
 
 ## Files
 
