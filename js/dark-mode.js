@@ -1,30 +1,58 @@
-// Dark mode toggle logic
-// - Toggles "dark-mode" class on <body>
-// - Uses localStorage to remember the user's choice across pages
+/**
+ * Dark Mode Toggle Functionality
+ * 
+ * Toggles "dark-mode" class on <body> element and uses localStorage
+ * to persist the user's theme preference across page loads.
+ */
 
 (function () {
+  'use strict';
+
   const STORAGE_KEY = 'preferred-theme';
   const body = document.body;
-  const toggleLabel = document.querySelector('.theme-toggle-label');
+  const toggleButton = document.querySelector('.theme-toggle-button');
 
-  if (!toggleLabel || !body) return;
-
-  // Apply saved theme on load
-  const savedTheme = localStorage.getItem(STORAGE_KEY);
-  if (savedTheme === 'dark') {
-    body.classList.add('dark-mode');
-    toggleLabel.textContent = '☀️';
+  // Exit early if required elements are missing
+  if (!toggleButton || !body) {
+    return;
   }
 
-  toggleLabel.addEventListener('click', function (event) {
-    event.preventDefault();
+  /**
+   * Apply saved theme preference on page load
+   */
+  function applySavedTheme() {
+    try {
+      const savedTheme = localStorage.getItem(STORAGE_KEY);
+      if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+        toggleButton.textContent = '☀️';
+      }
+    } catch (error) {
+      // localStorage may be unavailable in some contexts
+      console.warn('Could not access localStorage:', error);
+    }
+  }
 
+  /**
+   * Toggle dark mode and update button icon
+   */
+  function toggleDarkMode() {
     const isDark = body.classList.toggle('dark-mode');
-    localStorage.setItem(STORAGE_KEY, isDark ? 'dark' : 'light');
+    
+    try {
+      localStorage.setItem(STORAGE_KEY, isDark ? 'dark' : 'light');
+    } catch (error) {
+      console.warn('Could not save theme preference:', error);
+    }
 
-    // Swap icon for better feedback
-    toggleLabel.textContent = isDark ? '☀️' : '🌙';
-  });
+    // Update button icon to reflect current theme
+    toggleButton.textContent = isDark ? '☀️' : '🌙';
+  }
+
+  // Initialize theme on page load
+  applySavedTheme();
+
+  // Attach click event listener to toggle button
+  toggleButton.addEventListener('click', toggleDarkMode);
 })();
-
 

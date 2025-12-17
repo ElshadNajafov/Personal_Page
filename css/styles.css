@@ -1,6 +1,12 @@
-/* Simple responsive personal site styles */
+/* ============================================
+   Simple responsive personal site styles
+   ============================================ */
 
+/* ============================================
+   CSS Variables - Color Scheme & Spacing
+   ============================================ */
 :root {
+  /* Colors */
   --bg: #f8f9fb;
   --card: #fff;
   --accent: #6c63ff;
@@ -10,24 +16,40 @@
   --text: #222;
   --cta-text: #fff;
   --footer-text: #888;
+  
+  /* Layout */
   --max-width: 900px;
   --radius: 14px;
   --shadow: 0 2px 16px rgba(60,60,100,0.07);
+  
+  /* Spacing Variables */
+  --spacing-xs: 0.7rem;
+  --spacing-sm: 1.2rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2.2rem;
+  --spacing-xl: 2.5rem;
 }
-/* Dark mode */
+
+/* ============================================
+   Dark Mode Theme
+   ============================================ */
 body.dark-mode {
   --bg: #0d0d0d;
   --card: #1a1a1a;
   --accent: #39ff14;
   --accent-hover: #39ff14;
-  /* Muted text (used for those descriptive sentences) should be same as main text */
   --muted: #f5f5f5;
   --border: #2a2a2a;
-  /* Use a neutral light text color so regular text doesn't turn green */
   --text: #f5f5f5;
   --cta-text: #000;
 }
-* { box-sizing: border-box; }
+/* ============================================
+   Base Styles
+   ============================================ */
+* { 
+  box-sizing: border-box; 
+}
+
 body {
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   margin: 0;
@@ -37,11 +59,18 @@ body {
   line-height: 1.7;
   transition: background 0.3s, color 0.3s;
 }
+/* ============================================
+   Layout Components
+   ============================================ */
 .container {
   max-width: var(--max-width);
-  margin: 2.5rem auto 2rem auto;
-  padding: 0 1.2rem;
+  margin: var(--spacing-xl) auto var(--spacing-lg) auto;
+  padding: 0 var(--spacing-sm);
 }
+
+/* ============================================
+   Header & Navigation
+   ============================================ */
 header.site-header {
   background: var(--card);
   border-bottom: 1px solid var(--border);
@@ -56,7 +85,7 @@ header.site-header {
   justify-content: space-between;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0.7rem 1.2rem;
+  padding: var(--spacing-xs) var(--spacing-sm);
 }
 .brand {
   font-weight: 700;
@@ -83,15 +112,24 @@ nav.site-nav a:hover {
   background: var(--accent);
   color: var(--cta-text);
 }
+
+/* ============================================
+   Hero Section
+   ============================================ */
 .hero {
   display: flex;
-  gap: 2.2rem;
+  gap: var(--spacing-lg);
   align-items: center;
   background: var(--card);
-  padding: 2.2rem 1.5rem;
+  padding: var(--spacing-lg) var(--spacing-md);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  margin-bottom: 2.2rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Hero variant with reduced bottom margin */
+.hero-compact {
+  margin-bottom: var(--spacing-lg);
 }
 .profile-photo {
   width: 150px;
@@ -102,20 +140,24 @@ nav.site-nav a:hover {
   border: 2px solid var(--border);
 }
 .intro h1 {
-  margin: 0 0 0.7rem 0;
+  margin: 0 0 var(--spacing-xs) 0;
   font-size: 2.1rem;
   font-weight: 800;
   letter-spacing: 0.01em;
   color: var(--accent);
 }
+
 .lead {
   color: var(--muted);
   font-size: 1.15rem;
-  margin-bottom: 0.7rem;
+  margin-bottom: var(--spacing-xs);
 }
+/* ============================================
+   Buttons & Links
+   ============================================ */
 .cta {
   display: inline-block;
-  margin-right: 0.7rem;
+  margin-right: var(--spacing-xs);
   padding: 0.5rem 1.1rem;
   background: var(--accent);
   color: var(--cta-text);
@@ -134,35 +176,48 @@ nav.site-nav a:hover {
 .cta:hover {
   background: var(--accent-hover);
 }
+/* ============================================
+   Content Sections
+   ============================================ */
 .quick-links {
-  margin-top: 1.5rem;
+  margin-top: var(--spacing-md);
   background: var(--card);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 1.2rem 1.5rem;
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+/* Section with custom top spacing */
+.section-spaced {
+  margin-top: var(--spacing-sm);
 }
 .quick-links h2 {
   margin-top: 0;
   font-size: 1.2rem;
   color: var(--accent);
 }
+
 .quick-links ul {
-  padding-left: 1.2rem;
-  margin: 0.7rem 0 0 0;
+  padding-left: var(--spacing-sm);
+  margin: var(--spacing-xs) 0 0 0;
 }
+
 .quick-links li {
   margin-bottom: 0.4rem;
   color: var(--text);
 }
+/* ============================================
+   Projects Grid
+   ============================================ */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2,1fr);
   gap: 1.3rem;
-  margin-top: 2rem;
+  margin-top: var(--spacing-lg);
 }
 .project-card {
   background: var(--card);
-  padding: 1.2rem 1rem;
+  padding: var(--spacing-sm) 1rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   display: flex;
@@ -192,12 +247,17 @@ nav.site-nav a:hover {
   color: var(--muted);
   font-size: 0.98rem;
 }
+
+/* ============================================
+   Footer
+   ============================================ */
 footer.site-footer {
   background: var(--card);
-  margin-top: 2.5rem;
-  padding: 1.2rem 0;
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-sm) 0;
   border-top: 1px solid var(--border);
 }
+
 .footer-inner {
   max-width: var(--max-width);
   margin: 0 auto;
@@ -207,21 +267,38 @@ footer.site-footer {
   font-size: 0.98rem;
   color: var(--footer-text);
 }
+
+/* Footer with space-between layout */
+.footer-inner.footer-spaced {
+  justify-content: space-between;
+}
+
 .footer-inner > div:first-child {
-  margin-right: 2.5rem;
+  margin-right: var(--spacing-xl);
+}
+
+/* Footer items aligned to bottom */
+.footer-item {
+  align-self: flex-end;
 }
 .socials a {
-  margin-left: 0.7rem;
+  margin-left: var(--spacing-xs);
   color: var(--footer-text);
   text-decoration: none;
   transition: color 0.18s;
 }
+
 .socials a:hover {
   color: var(--accent);
 }
+
 .project-link {
   color: var(--accent);
 }
+
+/* ============================================
+   Responsive Design
+   ============================================ */
 @media (max-width: 900px) {
   .container, .header-inner, .footer-inner {
     max-width: 98vw;
@@ -254,32 +331,49 @@ footer.site-footer {
     width: 90px;
     height: 90px;
   }
+  
   .header-inner {
     padding: 0.5rem 0.5rem;
   }
+  
   nav.site-nav {
     gap: 0.3rem;
   }
+  
   nav.site-nav a {
     padding: 0.22rem 0.3rem;
     font-size: 0.85rem;
   }
+  
   .footer-inner {
-    /* Keep copyright left and icons right on small screens */
     width: 100%;
     justify-content: space-between;
     align-items: center;
     font-size: 0.93rem;
   }
 }
-/* Dark mode toggle */
-#dark-mode-toggle {
-  display: none;
-}
-.theme-toggle-label {
+
+/* ============================================
+   Dark Mode Toggle
+   ============================================ */
+.theme-toggle-button {
+  background: none;
+  border: none;
   cursor: pointer;
   font-size: 1.3rem;
   margin-left: 0.5rem;
-  transition: color 0.3s;
+  padding: 0;
+  transition: color 0.3s, transform 0.2s;
   color: var(--text);
+  line-height: 1;
+}
+
+.theme-toggle-button:hover {
+  transform: scale(1.1);
+}
+
+.theme-toggle-button:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
