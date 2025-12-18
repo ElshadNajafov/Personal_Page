@@ -273,7 +273,8 @@ footer.site-footer {
   justify-content: space-between;
 }
 
-.footer-inner > div:first-child {
+/* Only apply margin-right when NOT using space-between layout */
+.footer-inner:not(.footer-spaced) > div:first-child {
   margin-right: var(--spacing-xl);
 }
 
