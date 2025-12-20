@@ -278,6 +278,8 @@ nav.site-nav a:hover {
 
 .project-cta svg {
   flex-shrink: 0;
+  margin-right: 0.5rem;
+  vertical-align: middle;
 }
 
 /* ============================================
